@@ -12,3 +12,4 @@ before_script:
 script:
   - cargo clippy
   - cargo test
+  - yarn eslint js/*
