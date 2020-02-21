@@ -9,6 +9,7 @@ jobs:
   fast_finish: true
 before_script:
   - rustup component add clippy
+  - yarn install
 script:
   - cargo clippy
   - cargo test
