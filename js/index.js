@@ -247,7 +247,7 @@ function calculateOverriddenConfig(original, overrides) {
   return output;
 }
 
-export default function register(name, url, config = {}) {
+export function register(name, url, config = {}) {
   const configOverride = calculateOverriddenConfig(defaultConfig, config);
   entities[name] = { config: configOverride, elements: {} };
   entities[name].config.listItemTemplate = Handlebars.compile(
@@ -282,3 +282,7 @@ export default function register(name, url, config = {}) {
 
   entities[name].elements.input.addEventListener("input", handleInputEvent);
 }
+
+export default {
+  register
+};
