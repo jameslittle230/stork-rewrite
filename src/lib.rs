@@ -25,7 +25,7 @@ extern "C" {
 pub fn search(index: &IndexFromFile, query: String) -> String {
     console_error_panic_hook::set_once();
     let search_output = searcher::search(index, &query);
-    serde_json::to_string(&search_output).unwrap_or("{}".to_string())
+    serde_json::to_string(&search_output).unwrap_or_else(|_| "{}".to_string())
 }
 
 #[wasm_bindgen]
