@@ -16,9 +16,16 @@ type IndexFromFile = [u8];
 type Fields = Option<HashMap<String, String>>;
 
 #[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+}
+
+#[wasm_bindgen]
 pub fn search(index: &IndexFromFile, query: String) -> String {
     console_error_panic_hook::set_once();
-    serde_json::to_string(&searcher::search(index, &query)).unwrap()
+    let search_output = searcher::search(index, &query);
+    serde_json::to_string(&search_output).unwrap_or("{}".to_string())
 }
 
 #[wasm_bindgen]
